@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Topic: Countability of Sets</title>
+  <meta name="description" content="Explore a comprehensive set of practice questions for your NET JRF Real Analysis Assignment on Topic Countability. Enhance your understanding and problem-solving skills with these valuable exercises.">
+  <meta name="keywords" content="CSIR, GATE, CSIR NET JRF, Mathematics, Real Analysis, ,Test">
+  <meta name="author" content="Rajendra Rajpurohit">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    .explanation-section {
+    display: none;
+  }
+
+    #stopwatch {
+    padding: 10px;
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      font-size: 20px;
+      border-radius: 80%;
+  background-color: red;
+    }
+    
+   body {
+      font-family: Arial, sans-serif;
+      font-size: 17px;
+      line-height: 1.6;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      color: #333;
+      text-align: center;
+      font-size: 30px;
+      margin: 40px 0;
+    }
+ h3 {
+      color: #333;
+      ext-align: justify; 
+      font-size: 18px;
+      margin: 20px 20px;
+    }
+h4 {
+      color: red;
+      text-align: center; 
+      font-size: 18px;
+      margin: 20px 20px;
+    }
+
+  .question {
+    padding: 20px;
+  }
+
+  .question p {
+    font-weight: bold;
+  }
+
+  .options label {
+    display: block;
+    padding-left: 25px;
+  }
+
+  .submit-button {
+   background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 18px;
+      cursor: pointer;
+      margin-top: 20px;
+      border-radius: 8px;
+      margin-bottom: 100px;
+       float: right;
+  }
+  
+  .submit-button:hover {
+      background-color: #45a049;
+    }
+
+  #resultMessage {
+    font-size: 20px;
+    font-weight: bold;
+    color: blue;
+  }
+
+  .correct {
+    color: green;
+  }
+
+  .incorrect {
+    color: red;
+  }
+
+  .not-attempted {
+    color: blue;
+  }
+
+  p,
+  ol,
+  ul {
+    margin: 10px 0;
+  }
+  
+ .required {
+  color: red;
+}
+
+.popup-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid #ccc;
+  padding: 10px;
+  background-color: #f9f9 f9;
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 300px;
+      border-radius: 10px;
+      padding: 20px;
+      background-color: #fff;
+}
+
+.popup-form label {
+  margin-bottom: 0px;
+  color: #333;
+}
+
+.popup-form input[type="text"],
+.popup-form input[type="email"],
+.popup-form input[type="tel"] {
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+
+  .company-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .company-header img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+  }
+
+  .company-header h2 {
+    font-size: 24px;
+    color: #333;
+  }
+
+  #userDataForm {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #userDataForm label {
+    margin-bottom: 0px;
+    color: #333;
+  }
+
+  #userDataForm input[type="text"],
+  #userDataForm input[type="email"],
+  #userDataForm input[type="tel"] {
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+
+  #startTestButton {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  #startTestButton:hover {
+    background-color: #45a049;
+  } 
+  </style> 
+  
+</head>
+
+
+<body>
+ <!-- Popup for collecting user data -->
+<div id="userForm" class="popup-form">
+  <div class="company-header">
+   <img src="http://localhost/logo.jpg" alt="Company Logo" style="width:70px; height:70px; margin-right:10px;">
+    <h2>Rsquared Mathematics</h2>
+  </div>
+  <form id="userDataForm">
+    <label for="name">Name: <span class="required">*</span></label>
+    <input type="text" id="name" name="name" required><br><br>
+    <label for="email">Email: <span class="required">*</span></label>
+    <input type="email" id="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required><br><br>
+    <label for="phone">Phone: <span class="required">*</span></label>
+    <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required><br><br>
+    <button id="startTestButton" onclick="validateForm()">Start Test</button>
+  </form>
+  <p id="formNotice" style="color: red; display: none;">Please fill in all the required fields correctly.</p>
+</div>
+
+
+
+  <div id="stopwatch" style="display: none;">Time: 95:00</div>
+ <h1 id="title"> Topic: Countability of Sets</h1>
+  <form id="quizForm" style="display: none;">
+   <h3>Note : Welcome to Rsquared. We will continue with such quizzes in the future and this is just beginning. We request you to forward this quiz to your knowns so that it can spread more. <br>
+The Quiz contains a total of 25 Questions. <br>
+Part B(Single Correct) contains 15 questions, each of 3 marks and -0.75 marks for incorrect answers. <br>
+Part C(MSQ) contains 10 questions, each with 4.75 marks and no negative marking. The maximum score for the Test is 92.5. Best of Luck.</h3>
+   
+   <h4>Part - B.</h4>
+
+<div class="question">
+    <p>1. Let \(p\) be a polynomial in \(\mathbb{R}\) then</p>
+    <div class="options">
+        <label><input type="checkbox" name="q1[]" value="a"> (a) \(A=\{a \in \mathbb{R} / p(a) \in \mathbb{Q}\}\) is countable</label><br>
+        <label><input type="checkbox" name="q1[]" value="b"> (b) \(B=\{a \in \mathbb{R} / p(a) \in \mathbb{Q}^c\}\) is uncountable</label><br>
+        <label><input type="checkbox" name="q1[]" value="c"> (c) Countability of \(A\) & \(B\) in options (a) and (b) depends on polynomial \(p\)</label><br>
+        <label><input type="checkbox" name="q1[]" value="d"> (d) \(N \cdot O \cdot T \cdot A\)</label><br>
+    </div>
+    <p class="feedback"></p>
+    <div class="explanation-section">
+    <p>Explanation : Take \( p(x) = 0 \in \mathbb{R}[x] \). <br>
+Then \( A = \mathbb{R} \) and \( B = \phi \). <br>
+Thus \( a, b \) are incorrect.</p>
+  </div>
+</div>
+
+<div class="question">
+    <p>2. Let \(f: A \rightarrow B\) such that inverse image of every non-empty subset of \(B\) under \(f\) is non-empty then</p>
+    <div class="options">
+        <label><input type="checkbox" name="q2[]" value="a"> (a) \(B\) is countable then \(A\) is countable</label><br>
+        <label><input type="checkbox" name="q2[]" value="b"> (b) \(A\) is always countable</label><br>
+        <label><input type="checkbox" name="q2[]" value="c"> (c) \(A\) is countable then \(B\) is countable</label><br>
+        <label><input type="checkbox" name="q2[]" value="d"> (d) N.O.T.A</label><br>
+    </div>
+    <p class="feedback"></p>
+    <div class="explanation-section">
+  <p> Explanation : For any \( \alpha \in B \), take \( \{\alpha\} \subseteq B \). <br>
+Then \( f^{-1}\{\alpha\} \neq \phi \) (Given) <br>
+\( \Rightarrow f \) is an onto map. <br>
+\( \Rightarrow |A| \geq |B| \). <br>
+Only \( a \) is true.</p>
+  </div>
+</div>
+
+<div class="question">
+    <p>3. Let \(f: \mathbb{R} \rightarrow \mathbb{R}\) be a function defined as \(f(x)=\frac{x}{x^2+1}\). Then</p>
+    <div class="options">
+        <label><input type="checkbox" name="q3[]" value="a"> (a) \(f\) is one-one and onto</label><br>
+        <label><input type="checkbox" name="q3[]" value="b"> (b) \(f\) is one-one but not onto</label><br>
+        <label><input type="checkbox" name="q3[]" value="c"> (c) \(f\) is onto but not one-one</label><br>
+        <label><input type="checkbox" name="q3[]" value="d"> (d) \(f\) is neither one-one nor onto</label><br>
+    </div>
+    <p class="feedback"></p>
+    <div class="explanation-section">
+   <p> Explanation : \( f(x) = \frac{x}{x^{2}+1} \) <br>
+As \(  x  < x^{2}+1 \forall x \in \mathbb{R} \) <br>
+\( \implies f(x) = \frac{x}{x^{2}+1} < 1\) <br>
+Hence \( f \) is not onto. <br>
+For a function to be one-to-one, if we assume \( f\left(x_{1}\right)=f\left(x_{2}\right) \), then \( x_{1}=x_{2} \). <br>
+Given, \( \mathrm{f}: \mathrm{R} \rightarrow \mathrm{R} \) defined by \( \mathrm{f}(\mathrm{x})=\frac{x}{x^{2}+1}, \forall \mathrm{x} \in \mathrm{R} \) <br>
+Thus for one-one function, consider <br>
+\( \begin{aligned} & \mathrm{f}\left(\mathrm{x}_{1}\right)=\mathrm{f}\left(\mathrm{x}_{2}\right) \\ & \Rightarrow \frac{x_{1}}{x_{1}^{2}+1}=\frac{x_{2}}{x_{2}^{2}+1} \\ & \Rightarrow \mathrm{x}_{1} \mathrm{x}_{2}\left(\mathrm{x}_{2}-\mathrm{x}_{1}\right)=\mathrm{x}_{2}-\mathrm{x}_{1} \\ & \Rightarrow \mathrm{x}_{2} \mathrm{X}_{1}=1 \text {, if } \mathrm{x}_{2} \neq \mathrm{x}_{1} \end{aligned} \). Hence f is not one one.</p>
+  </div>
+</div>
+
+<div class="question">
+    <p>4. Let \(x\) be any transcendental real number and \(y=x^{\frac{a}{b}}\), where \(\frac{a}{b} \in \mathbb{Q}-\{0\}\), then</p>
+    <div class="options">
+        <label><input type="checkbox" name="q4[]" value="a"> (a) \(y\) is always algebraic real number</label><br>
+        <label><input type="checkbox" name="q4[]" value="b"> (b) \(y\) may or may not be an algebraic real number</label><br>
+        <label><input type="checkbox" name="q4[]" value="c"> (c) \(y\) is a transcendental real number</label><br>
+        <label><input type="checkbox" name="q4[]" value="d"> (d) \(y\) can be a irrational algebraic real number</label><br>
+    </div>
+    <p class="feedback"></p>
+    <div class="explanation-section">
+    <p> Explanation : \(y=x^{a / b}: \frac{a}{b} \in \mathbb{Q}-\{0\}\) <br>
+Say \(a=\frac{p_{1}}{q_{2}}, b=\frac{p_{2}}{q_{2}}\) <br>
+\( \Rightarrow y=x^{\frac{p_{1} q_{2}}{{p_2}q_{1}}} \) <br>
+If \(y \in \mathbb{A}\) (Set of Algebraic Numbers.) <br>
+Then \(y^{p_{2} q_1} \in \mathbb{A}\) <br>
+\( \Rightarrow x^{p_{1} q_{2}} \in \mathbb{A}\) <br>
+\( \Rightarrow x \) is Algebraic. <br>
+which is a contradiction.</p>
+  </div>
+</div>
+
+<div class="question">
+    <p>5. Let \(S=\left\{(x, y) \mid x^2+y^2=\frac{1}{n^2} \right\}\) <br> \(S \text{ where } n \in \mathbb{N} \text{ and either } x \in \mathbb{Q} \text{ or } y \in \mathbb{Q}\)</p>
+    <p>Here \(\mathbb{Q}\) is the set of rational numbers and \(\mathbb{N}\) is the set of positive integers. Which of the following is true?</p>
+    <div class="options">
+        <label><input type="checkbox" name="q5[]" value="a"> (a) \(S\) is a finite non-empty set</label><br>
+        <label><input type="checkbox" name="q5[]" value="b"> (b) \(S\) is countable</label><br>
+        <label><input type="checkbox" name="q5[]" value="c"> (c) \(S\) is uncountable</label><br>
+        <label><input type="checkbox" name="q5[]" value="d"> (d) \(S\) is empty</label><br>
+    </div>
+    <p class="feedback"></p>
+    <div class="explanation-section">
+   <p> Explanation : WLOG let \(x \in Q \rightarrow x^{2}+y^{2}=\frac{1}{n^{2}}\) <br>
+\( \Rightarrow y^{2}=-x^{2}+\frac{1}{n^{2}}\) <br>
+\( \Rightarrow y \) is an Algebraic No. <br>
+Thus \(S \subseteq \mathbb{A} \times \mathbb{A}\) <br>
+Where \( \mathbb{A} \) is set of algebraic numbers.</p>
+  </div>
+</div>
+
+<div class="question">
+    <p>6. Every infinite set is</p>
+    <div class="options">
+        <label><input type="checkbox" name="q6[]" value="a"> (a) Always uncountable</label><br>
+        <label><input type="checkbox" name="q6[]" value="b"> (b) Equivalent to one of its proper subsets</label><br>
+        <label><input type="checkbox" name="q6[]" value="c"> (c) Similar to \(\mathbb{R}\)</label><br>
+        <label><input type="checkbox" name="q6[]" value="d"> (d) None of these</label><br>
+    </div>
+    <p class="feedback"></p>
+    <div class="explanation-section">
+    <p> Explanation : NA</p>
+  </div>
+</div>
+
+<div class="question">
+    <p>7. Let \(f: A \rightarrow B\) be a function then</p>
+    <div class="options">
+        <label><input type="checkbox" name="q7[]" value="a"> (a) \(A\) is countable then \(B\) is countable</label><br>
+        <label><input type="checkbox" name="q7[]" value="b"> (b) \(f(A)\) is countable \(\implies B\) is countable</label><br>
+        <label><input type="checkbox" name="q7[]" value="c"> (c) \(f(A)\) is uncountable \(\implies B\) is uncountable</label><br>
+        <label><input type="checkbox" name="q7[]" value="d"> (d) N.O.T.A</label><br>
+    </div>
+    <p class="feedback"></p>
+    <div class="explanation-section">
+   <p> Explanation : If \(f: A \longrightarrow B\) <br>
+\( \Rightarrow f(A) \subset B\) <br>
+\( \Rightarrow C \) is true.</p>
+  </div>
+</div>
+
+<div class="question">
+    <p>8. The set of all characteristic functions on a set \(A\) is</p>
+    <div class="options">
+        <label><input type="checkbox" name="q8[]" value="a"> (a) Similar to \(A\)</label><br>
+        <label><input type="checkbox" name="q8[]" value="b"> (b) Similar to \(A^A\)</label><br>
+        <label><input type="checkbox" name="q8[]" value="c"> (c) Similar to \(P(A)\)</label><br>
+        <label><input type="checkbox" name="q8[]" value="d"> (d) Countable if \(A\) is countable</label><br>
+    </div>
+    <p class="feedback"></p>
+    <div class="explanation-section">
+    <p> Explanation : For any \(S \subseteq A\) we have \(f_S= \begin{cases}1 & : x \in S \\ 0 & : x \notin S\end{cases}\) and converse.</p>
+  </div>
+</div>
+
+<div class="question">
+    <p>9. Let \(\mathbb{C}\) denote the Cantor's set then \(\mathbb{C}^c \cap [0,1]\) is</p>
+    <div class="options">
+        <label><input type="checkbox" name="q9[]" value="a"> (a) Empty</label><br>
+        <label><input type="checkbox" name="q9[]" value="b"> (b) Finite</label><br>
+        <label><input type="checkbox" name="q9[]" value="c"> (c) Uncountable</label><br>
+        <label><input type="checkbox" name="q9[]" value="d"> (d) Countably infinite</label><br>
+    </div>
+    <p class="feedback"></p>
+    <div class="explanation-section">
+    <p> Explanation : Note that \(\left(\frac{1}{3}, \frac{2}{3}\right) \cap \mathbf{C} =\phi\) <br>
+\( \Rightarrow\left(\frac{1}{3}, \frac{2}{3}\right) \subseteq \mathbf{C}^c \cap[0,1]\) <br>
+\( \Rightarrow C^c \cap[0,1] \) is uncountable.</p>
+  </div>
+</div>
+
+<div class="question">
+    <p>10. Let \(A=\{x ; x \in \mathbb{R},|x|<1\}\)</p>
+    <p>\(B=\{x ; x \in \mathbb{R},|x-1| \geq 1\}\)</p>
+    <p>and \(A \cup B=\mathbb{R}-D\), then the set \(D\) is</p>
+    <div class="options">
+        <label><input type="checkbox" name="q10[]" value="a"> (a) \(\{x: 1 < x < 2\}\)</label><br>
+        <label><input type="checkbox" name="q10[]" value="b"> (b) \(\{x: 1 < x \leq 2\}\)</label><br>
+        <label><input type="checkbox" name="q10[]" value="c"> (c) \(\{x: 1 \leq x < 2\}\)</label><br>
+        <label><input type="checkbox" name="q10[]" value="d"> (d) \(\{x: 1 \leq x \leq 2\}\)</label><br>
+    </div>
+    <p class="feedback"></p>
+    <div class="explanation-section">
+    <p> Explanation : NA</p>	
+  </div>
+</div>
+
+<div class="question">
+    <p>11. If \(f: \mathbf{R} \rightarrow[0,1)\) is defined by \(f(x)=\frac{\{x\}}{2}\), then</p>
+    <div class="options">
+        <label><input type="checkbox" name="q11[]" value="a"> (a) \(f\) is one-one</label><br>
+        <label><input type="checkbox" name="q11[]" value="b"> (b) \(f\) is onto</label><br>
+        <label><input type="checkbox" name="q11[]" value="c"> (c) \(f\) is not onto</label><br>
+        <label><input type="checkbox" name="q11[]" value="d"> (d) \(f\) is one-one & onto</label><br>
+    </div>
+<p class="feedback"></p>
+<div class="explanation-section">
+    <p> Explanation : \(f(0)=f(1)=0 \Rightarrow\) Not \(1-1\). Also; \(f(\mathbb{R})=[0,1 / 2) \Rightarrow\) not onto. \((\because\) Range \(\{x\}=[0,1))\)</p>
+  </div>
+</div>
+
+<div class="question">
+    <p>12. Consider the sets</p>
+    <p>\(X=\left\{x+\sqrt{2} \mid x \in \mathbf{Q}\right.\) and \(\left.x^{2} \leq 2\right\}\)</p>
+    <p>and \(Y=[-\sqrt{2}, \sqrt{2}]-X\). Then</p>
+    <div class="options">
+        <label><input type="checkbox" name="q12[]" value="a"> (a) \(X\) is countable, \(Y\) is finite</label><br>
+        <label><input type="checkbox" name="q12[]" value="b"> (b) \(X\) is uncountable, \(Y\) is countable</label><br>
+        <label><input type="checkbox" name="q12[]" value="c"> (c) \(X\) is countable, \(Y\) is countable</label><br>
+        <label><input type="checkbox" name="q12[]" value="d"> (d) \(X\) is countable, \(Y\) is uncountable</label><br>
+    </div>
+<p class="feedback"></p>
+<div class="explanation-section">
+    <p> Explanation : \(X \subseteq Q+\sqrt{2} \Rightarrow X\) is countable.<br>
+    \(Y=[-\sqrt{2}, \sqrt{2}]\) - Countable \(=\) Uncountable.</p>
+  </div>
+</div>
+
+<div class="question">
+    <p>13. Let \(E\) be an uncountable subset of \(\mathbb{R}\) and let \(E=\cup_{n=1}^{\infty} A_{n}\), where \(A_{n}\) is a subset of \(\mathbb{R}\). Then:</p>
+    <div class="options">
+        <label><input type="checkbox" name="q13[]" value="a"> (a) At least one \(A_{n}\) contains a rational number</label><br>
+        <label><input type="checkbox" name="q13[]" value="b"> (b) At least one \(A_{n}\) contains an irrational number</label><br>
+        <label><input type="checkbox" name="q13[]" value="c"> (c) At least one \(A_{n}\) contains an open interval</label><br>
+        <label><input type="checkbox" name="q13[]" value="d"> (d) No \(A_{n}\) is countable</label><br>
+    </div>
+<p class="feedback"></p>
+<div class="explanation-section">
+    <p> Explanation : \(E=\bigcup_{i=1}^{\infty} A_i\) = Uncountable <br>
+    \( \Rightarrow \) At least one of \(A_i\) must be uncountable. <br>
+    Also; Every uncountable subset of \(\mathbb{R}\) contains uncountable irrational numbers.<br>
+    \( \Rightarrow \) At least one \(A_i \cap \mathbf{Q}^c \neq \phi\).</p>
+  </div>
+</div>
+<div class="question">
+    <p>14. Let \(Y=\{1,2,3, \ldots, 100\}\) and let \(h: Y \rightarrow Y\) be a strictly increasing function. The total number of functions \(g: Y \rightarrow Y\) satisfying \(g(h(j))=h(g(j)), \forall j \in Y\) is</p>
+    <div class="options">
+        <label><input type="checkbox" name="q14[]" value="a"> (a) 0</label><br>
+        <label><input type="checkbox" name="q14[]" value="b"> (b) 100 !</label><br>
+        <label><input type="checkbox" name="q14[]" value="c"> (c) \(100^{100}\)</label><br>
+        <label><input type="checkbox" name="q14[]" value="d"> (d) \(100^{98}\)</label><br>
+    </div>
+<p class="feedback"></p>
+<div class="explanation-section">
+    <p> Explanation : NA</p>
+  </div>
+</div>
+<div class="question">
+    <p>15. Let \(X=\left\{x \in \mathbf{R}: x^{2}\right.\) is rational \(\}\)</p>
+    <p>Then</p>
+    <div class="options">
+        <label><input type="checkbox" name="q15[]" value="a"> (a) \(X=\mathbf{R}\)</label><br>
+        <label><input type="checkbox" name="q15[]" value="b"> (b) \(X=\mathbf{Q}\)</label><br>
+        <label><input type="checkbox" name="q15[]" value="c"> (c) \(X\) is a countable subset of \(\mathbf{R}\) and \(X \neq \mathbf{Q}\)</label><br>
+        <label><input type="checkbox" name="q15[]" value="d"> (d) \(X\) is an uncountable subset of \(\mathbf{R}\) and \(X \neq \mathbf{R}\)</label><br>
+    </div>
+<p class="feedback"></p>
+<div class="explanation-section">
+    <p> Explanation : for a. \(\pi \notin X\) <br>
+for b. \(\sqrt{2} \in X\) <br>
+c. \(x^2\) is rational \( \Rightarrow x \) is algebraic \( \Rightarrow X \) is a subset of the set of algebraic numbers \( \Rightarrow x \) is countable and \( Q \) is a subset of \( X \).</p>
+  </div>
+</div>
+
+<h4>Part - C.</h4>
+
+<div class="question">
+    <p>16. Which of the following is/are countable -</p>
+    <div class="options">
+        <label><input type="checkbox" name="q16[]" value="a"> (a) A set is countable if it is similar to \(N\)</label><br>
+        <label><input type="checkbox" name="q16[]" value="b"> (b) \(S=\left\{\alpha \in Q^c ; \alpha^n \in \mathbb{Q}\right.\) for some \(\left.n \in N\right\}\)</label><br>
+        <label><input type="checkbox" name="q16[]" value="c"> (c) Set of all subsets of \(N\) with finite compliment</label><br>
+        <label><input type="checkbox" name="q16[]" value="d"> (d) Set of all real numbers whose Ternary expression is free from \(0\) and \(1\) in \([0,1]\)</label><br>
+    </div>
+<p class="feedback"></p>
+<div class="explanation-section">
+    <p> Explanation : for a, take a finite set. <br>
+for b, if \(\alpha^n \in Q\) \(\Rightarrow \alpha\) is a root of \(P(x)=x^n-\alpha^n \in Q[x]\) \(\Rightarrow \alpha\) is algebraic. <br>
+for c, \(A=\left\{X \subseteq \mathbb{N}: X^c\right.\) is finite \(\} \sim\{Y \subseteq \mathbb{N}: Y\) is finite \(\} =\) Countable. (As every set has a unique complement) <br>
+for d, Ternary Exp. is in \(\{0,1,2\}\).</p>
+  </div>
+</div>
+
+<div class="question">
+    <p>17. Define \(A_k=\left\{\left\langle a_n\right\rangle ; \sum_{n=1}^{\infty} a_n=k\right\}\) and \(B=\bigcup_{k \in N} A_k\) then \(B\) is countable -</p>
+    <div class="options">
+        <label><input type="checkbox" name="q17[]" value="a"> (a) if \(a_n \in\{0,-1,1\}\)</label><br>
+        <label><input type="checkbox" name="q17[]" value="b"> (b) if \(a_n\in\{0,1\}\)</label><br>
+        <label><input type="checkbox" name="q17[]" value="c"> (c) only if \(a_n\in\{0,1\}\)</label><br>
+        <label><input type="checkbox" name="q17[]" value="d"> (d) if \(a_n \in[0,1]\)</label><br>
+    </div>
+<p class="feedback"></p>
+<div class="explanation-section">
+    <p> Explanation :
+\[
+\begin{aligned}
+& A_K=\left\{\left\langle a_n\right\rangle: \sum a_n=K\right\} \\
+& \text { As } \sum a_n=K \text { (finite) } \Rightarrow a_n \longrightarrow 0
+\end{aligned}
+\] <br>
+for \(a\); if \(a_n \in\{0,-1,1\}\) \(\Rightarrow\) \(a\) must be eventually '0'. \(\Rightarrow A_K\) is countable for all \(K \in \mathbb{N}\).<br>
+\(\Rightarrow B=\bigcup_{k=1}^{\infty} A_k\) is countable.<br>
+for \(b\); if \(a_n \in\{0,1\} \& a_n \rightarrow 0\) \(\Rightarrow a_n=0 \quad \forall n \geq k\). Same as \(a\), \(B\) is countable.<br>
+for \(c\); Take \(\{0,1,-1\}\). <br>
+for \(d\); \(\sum a_n=k : a_n \in[0,1]\), We can find uncountable such sequences.</p>
+  </div>
+</div>
+
+<div class="question">
+    <p>18. Let \(R\) denote an equivalence relation on \(N\) then</p>
+    <div class="options">
+        <label><input type="checkbox" name="q18[]" value="a"> (a) \(\exists R\) s.t number of equivalence classes are finite</label><br>
+        <label><input type="checkbox" name="q18[]" value="b"> (b) \(\exists R\) s.t number of equivalence classes are countable</label><br>
+        <label><input type="checkbox" name="q18[]" value="c"> (c) \(\exists R\) s.t number of equivalence classes are uncountable</label><br>
+        <label><input type="checkbox" name="q18[]" value="d"> (d) set of all equivalence relations on \(N\) is countable</label><br>
+    </div>
+<p class="feedback"></p>
+<div class="explanation-section">
+    <p> Explanation : NA</p>
+  </div>
+</div>
+
+<div class="question">
+    <p>19. Which of the following is/are true</p>
+    <div class="options">
+        <label><input type="checkbox" name="q19[]" value="a"> (a) circle it \(\mathbb{R}^2\) with rational radius is countable</label><br>
+        <label><input type="checkbox" name="q19[]" value="b"> (b) Union of countable sets is countable</label><br>
+        <label><input type="checkbox" name="q19[]" value="c"> (c) The number of triangles with the same base \(A B\) and equal height is finite</label><br>
+        <label><input type="checkbox" name="q19[]" value="d"> (d) \(\left\{(a, b, c) ;  a, b, c \in \mathbb{Z}\right.\) and \(a^2+b^2=c^2\}\) is finite</label><br>
+    </div>
+<p class="feedback"></p>
+<div class="explanation-section">
+    <p> Explanation :
+    for a , take 
+\[
+A=\left\{(x-a)^2+(y-b)^2=1 ; a, b \in \mathbb{R}\right\} \text { is uncountable. }
+\]<br>
+b. 
+\[
+B=\bigcup_{\alpha \in \mathbb{Q}^c}\{\alpha\}=\mathbb{Q}^c
+\]<br>
+c. Height can be from any point in Base \(AB\). <br>
+d. \(\{(0, b, b): b \in \mathbb{Z}\}\) is contained in the given set</p>
+  </div>
+</div>
+
+
+
+<div class="question">
+    <p>20. Which of the following sets are uncountable</p>
+    <div class="options">
+        <label><input type="checkbox" name="q20[]" value="a"> (a) \(A=\{f: \mathbb{N} \rightarrow \mathbb{N} / f\) is increasing \(\}\)</label><br>
+        <label><input type="checkbox" name="q20[]" value="b"> (b) \(B=\{f: \mathbb{N} \rightarrow \mathbb{N} / f\) is decreasing \(\}\)</label><br>
+        <label><input type="checkbox" name="q20[]" value="c"> (c) \(B=\{f: \mathbb{N} \rightarrow \{1,2,3.....m\}/ f\) is eventually constant, \(m>2\}\)</label><br>
+        <label><input type="checkbox" name="q20[]" value="d"> (d) \(D= \{f: \mathbb{R} \rightarrow \mathbb{Q}^c /f\) is continuous \(\}\)</label><br>
+    </div>
+<p class="feedback"></p>
+<div class="explanation-section">
+    <p> Explanation : 
+\[
+A \sim \text{ The set of all infinite subsets of } \mathbb{N} \sim P(\mathbb{N}) \sim \mathbb{R}
+\]
+\[
+B=\phi
+\]
+\[
+C=\text{ Countably infinite.}
+\]
+\[
+D \sim\{f / f: \mathbb{Q} \text{ cont.} \rightarrow \mathbb{R}\} \sim \mathbb{R}.
+\]</p>
+  </div>
+</div>
+<div class="question">
+    <p>21. Which of the following is/are true?</p>
+    <div class="options">
+        <label><input type="checkbox" name="q21[]" value="a"> (a) There exists an onto map \(f: \mathbb{R} \rightarrow \mathbb{Q}^{c}\)</label><br>
+        <label><input type="checkbox" name="q21[]" value="b"> (b) There exists an onto map \(f: \mathbb{Q}^{c} \rightarrow \mathbb{R}\)</label><br>
+        <label><input type="checkbox" name="q21[]" value="c"> (c) There exists an onto map \(f: \mathbb{R} \rightarrow(0,1)\)</label><br>
+        <label><input type="checkbox" name="q21[]" value="d"> (d) There exists an onto map \(f: \mathbb{R} \rightarrow(0,1) \cap \mathbb{Q}\)</label><br>
+    </div>
+<p class="feedback"></p>
+<div class="explanation-section">
+    <p> Explanation : NA</p>
+  </div>
+</div>
+
+<div class="question">
+    <p>22. Let \(A\) and \(B\) be two non-empty subsets of \(\mathbb{R}\) and \(f: \mathbb{R} \rightarrow \mathbb{R}\) be a function. Then which of the following is/are true?</p>
+    <div class="options">
+        <label><input type="checkbox" name="q22[]" value="a"> (a) \(f(A \cap B) \subseteq f(A) \cap f(B)\)</label><br>
+        <label><input type="checkbox" name="q22[]" value="b"> (b) \(f(A \cap B)=f(A) \cap f(B)\)</label><br>
+        <label><input type="checkbox" name="q22[]" value="c"> (c) \(f(A \cap B)=f(A) \cap f(B)\) if \(f\) is one-one</label><br>
+        <label><input type="checkbox" name="q22[]" value="d"> (d) \(f(A \cap B)=f(A) \cap f(B)\) if \(f\) is onto</label><br>
+    </div>
+<p class="feedback"></p>
+<div class="explanation-section">
+    <p> Explanation : NA</p>
+  </div>
+</div>
+
+<div class="question">
+    <p>23. Which of the following sets are a subset of irrational numbers?</p>
+    <div class="options">
+        <label><input type="checkbox" name="q23[]" value="a"> (a) \(\left\{e^{r} \mid r \in \mathbb{Q}\right.\) and \(\left.r \neq 0\right\}\)</label><br>
+        <label><input type="checkbox" name="q23[]" value="b"> (b) \(\{\cos r \mid r \in \mathbb{Q}\) and \(r \neq 0\}\)</label><br>
+        <label><input type="checkbox" name="q23[]" value="c"> (c) \(\left\{\log _{10} r \mid r \in \mathbb{Q}\right.\) and \(\left.r \neq 0,10^{n}(n \in \mathbb{N})\right\}\)</label><br>
+        <label><input type="checkbox" name="q23[]" value="d"> (d) \(\{\sinh r \mid r \in \mathbb{Q}\) and \(r \neq 0\}\)</label><br>
+    </div>
+ <p class="feedback"></p>
+ <div class="explanation-section">
+  <p> Explanation : For any \(r \in Q - \{0\}\) \(e^r\) is Transcendental. <br>
+\(\Rightarrow\{e^r: r \in \mathbb{Q}-\{0\}\}\left\{\subseteq\mathbb{Q}^c\right.\right.\)<br>
+(c)
+\[
+\begin{aligned}
+r=\frac{1}{10^{10}} & \Rightarrow \log _{10}(r) \\
+& =\log _{10}(10)^{-10}=-10 \notin \mathbb{Q}^c
+\end{aligned}
+\]
+\(c\) is not true.</p>
+  </div>
+</div>
+
+<div class="question">
+    <p>24. Let \(A\) be a collection of all sets which are similar to \(\mathbb{N}\) then \(A\) is</p>
+    <div class="options">
+        <label><input type="checkbox" name="q24[]" value="a"> (a) Countable</label><br>
+        <label><input type="checkbox" name="q24[]" value="b"> (b) Uncountable</label><br>
+        <label><input type="checkbox" name="q24[]" value="c"> (c) Finite</label><br>
+        <label><input type="checkbox" name="q24[]" value="d"> (d) Infinite</label><br>
+    </div>
+   
+    <p class="feedback"></p>
+    <div class="explanation-section">
+   <p> Explanation : \(\{ X \subseteq \mathbb{N} : X \text{ is infinite}\} \subseteq \mathbb{A}\).</p>
+  </div>
+</div>
+<div class="question">
+    <p>25. Which of the following is/are correct?</p>
+    <div class="options">
+        <label><input type="checkbox" name="q25[]" value="a"> (a) Every function from \(\mathbf{Q}\) to \(\mathbf{R}\) will be one-one.</label><br>
+        <label><input type="checkbox" name="q25[]" value="b"> (b) Every function from \(\mathbf{R}\) to any finite set will be onto</label><br>
+        <label><input type="checkbox" name="q25[]" value="c"> (c) There exists a function from \(\mathbf{R} \rightarrow \mathbf{Q}^{c}\) which is neither one-one nor onto</label><br>
+        <label><input type="checkbox" name="q25[]" value="d"> (d) There exists a function from \(P(\mathbf{R}) \rightarrow \mathbf{N}\) which is one-one</label><br>
+    </div>
+    <p class="feedback"></p>
+    <div class="explanation-section">
+    <p> Explanation : NA.</p>
+  </div>
+</div>
+
+
+
+
+   
+    <div id="resultMessage" style="display: none;"></div>
+    <button class="submit-button">Submit</button>
+  </form>
+<script>
+  const correctAnswers = ['c', 'c', 'd', 'c', 'b', 'b', 'c', 'c', 'c', 'c', 'c', 'd', 'b', 'c', 'c', ['b', 'c', 'd'], ['a', 'b'], ['a', 'b'], ['a', 'b', 'c', 'd'], ['a', 'd'], ['a', 'b', 'c', 'd'], ['a', 'c'], ['a', 'b', 'd'], 'b', 'c'];
+
+  const feedbackList = document.querySelectorAll('.feedback');
+  const submitButton = document.querySelector('.submit-button');
+  let score = 0;
+  let isStopped = false;
+  let userFormData = {};
+  let correctCount = 0;
+  let incorrectCount = 0;
+  const totalQuestions = 25; // Update this to the total number of questions
+
+  function checkAnswer(questionIndex) {
+    const options = document.querySelectorAll(`.question:nth-of-type(${questionIndex + 1}) .options input:checked`);
+    const feedback = feedbackList[questionIndex];
+
+    if (options.length === 0) {
+      feedback.innerHTML = `Question not attempted. The correct answer is ${formatCorrectAnswer(correctAnswers[questionIndex])}.`;
+      feedback.className = 'not-attempted';
+    } else if (compareArrays(Array.from(options).map(option => option.value), correctAnswers[questionIndex])) {
+      feedback.innerHTML = 'Correct answer!';
+      feedback.className = 'correct';
+      if (questionIndex < 15) {
+        score += 3;
+      } else {
+        score += 4.75;
+      }
+      correctCount++;
+    } else {
+      feedback.innerHTML = `Incorrect answer. The correct answer is ${formatCorrectAnswer(correctAnswers[questionIndex])}.`;
+      feedback.className = 'incorrect';
+      if (questionIndex < 15) {
+        score -= 0.75;
+      }
+      incorrectCount++;
+    }
+  }
+
+  submitButton.addEventListener('click', function (e) {
+    e.preventDefault();
+    submitButton.disabled = true;
+    for (let i = 0; i < totalQuestions; i++) {
+      checkAnswer(i);
+    }
+    displayScore();
+    displayExplanations();
+    isStopped = true;
+    sendDataToGoogleSheet();
+  });
+
+  function validateForm() {
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
+
+    if (name === '' || email === '' || phone === '') {
+      alert('Please fill in all the required fields.');
+    } else if (!/^\d{10}$/.test(phone)) {
+      alert('Please enter a valid 10-digit phone number.');
+    } else {
+      startTest();
+    }
+  }
+
+  function displayScore() {
+    const resultMessage = document.getElementById('resultMessage');
+    const scoreDisplay = document.createElement('p');
+    const timeStamp = new Date().toLocaleString();
+    scoreDisplay.textContent = `Your score: ${score}. Correct Answers: ${correctCount}. Incorrect Answers: ${incorrectCount}. Submitted at: ${timeStamp}`;
+    resultMessage.appendChild(scoreDisplay);
+    resultMessage.style.display = 'block';
+  }
+
+  function sendDataToGoogleSheet() {
+    const url = 'https://script.google.com/macros/s/AKfycbyqPDMMpKBhkyrvf7ghbdsKfbj8S4TsKVp71UKNe121q2psPVrUf7Kff51uHV2DxbCzJA/exec';
+    const form = document.getElementById('userDataForm');
+    const formData = new FormData(form);
+    formData.append('score', score);
+    formData.append('positive', correctCount);
+    formData.append('negative', incorrectCount);
+    formData.append('incorrect', incorrectCount);
+    formData.append('correct', correctCount);
+
+    fetch(url, {
+      method: 'POST',
+      mode: 'no-cors',
+      body: formData,
+    })
+      .then(response => {
+        console.log('Your test is completed.', response);
+      })
+      .catch(error => {
+        console.error('An error occurred:', error);
+      });
+  }
+
+
+ document.getElementById('startTestButton').addEventListener('click', function (e) {
+      e.preventDefault();
+      validateForm();
+    });
+
+    function validateForm() {
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+
+      if (name === '' || email === '' || phone === '') {
+        alert('Please fill in all the required fields.');
+      } else if (!/^\d{10}$/.test(phone)) {
+        alert('Please enter a valid 10-digit phone number.');
+      } else {
+        startTest();
+      }
+    }
+function startTest() {
+  userFormData = {
+    name: document.getElementById('name').value,
+    email: document.getElementById('email').value,
+    phone: document.getElementById('phone').value
+  };
+  sendDataToGoogleSheet();
+  const userForm = document.getElementById('userForm');
+  const quizForm = document.getElementById('quizForm');
+  const stopwatch = document.getElementById('stopwatch');
+  userForm.style.display = 'none';
+  quizForm.style.display = 'block';
+  stopwatch.style.display = 'block';
+
+const startFiveMinutes = 95 * 60 * 1000;
+      const startStartTime = Date.now();
+      let startInterval = setInterval(function () {
+        if (!isStopped) {
+          const startElapsedTime = Date.now() - startStartTime;
+          const startRemainingTime = startFiveMinutes - startElapsedTime;
+          const startMinutes = Math.floor(startRemainingTime / 60000);
+          const startSeconds = Math.floor((startRemainingTime % 60000) / 1000);
+          document.getElementById('stopwatch').innerText = `Time: ${formatTime(startMinutes)}:${formatTime(startSeconds)}`;
+
+          if (startRemainingTime <= 0) {
+            clearInterval(startInterval);
+            submitButton.click();
+          }
+        }
+      }, 1000);
+    }
+
+
+function formatTime(time) {
+  return time < 10 ? `0${time}` : time;
+}
+
+
+  function displayScore() {
+    const resultMessage = document.getElementById('resultMessage');
+    const table = document.createElement('table');
+    const timeStamp = new Date().toLocaleString();
+
+    const totalScoreRow = table.insertRow(0);
+    const totalScoreLabel = totalScoreRow.insertCell(0);
+    const totalScoreValue = totalScoreRow.insertCell(1);
+    totalScoreLabel.innerHTML = 'Total Score : ';
+    totalScoreValue.innerHTML = score;
+
+    const correctQuestionsRow = table.insertRow(1);
+    const correctQuestionsLabel = correctQuestionsRow.insertCell(0);
+    const correctQuestionsValue = correctQuestionsRow.insertCell(1);
+    correctQuestionsLabel.innerHTML = 'Correct Questions : ';
+    correctQuestionsValue.innerHTML = correctCount;
+
+    const incorrectQuestionsRow = table.insertRow(2);
+    const incorrectQuestionsLabel = incorrectQuestionsRow.insertCell(0);
+    const incorrectQuestionsValue = incorrectQuestionsRow.insertCell(1);
+    incorrectQuestionsLabel.innerHTML = 'Incorrect Questions : ';
+    incorrectQuestionsValue.innerHTML = incorrectCount;
+
+    resultMessage.appendChild(table);
+    resultMessage.style.display = 'block';
+  }
+
+function compareArrays(arr1, arr2) {
+  if (arr1.length !== arr2.length) {
+    return false;
+  }
+  for (let i = 0; i < arr1.length; i++) {
+    if (Array.isArray(arr1[i]) && Array.isArray(arr2[i])) {
+      if (!compareArrays(arr1[i], arr2[i])) {
+        return false;
+      }
+    } else if (arr1[i] !== arr2[i]) {
+      return false;
+    }
+  }
+  return true;
+}
+function formatCorrectAnswer(answer) {
+  return answer;
+}
+</script>
+
+</body>
+</html>
